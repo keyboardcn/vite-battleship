@@ -28,8 +28,6 @@ export function WinDialog() {
         startGame,
         handleCloseWinDialog,
     } = useContext(GameContext);
-
-
     
     return (
         <Dialog open={winDialogOpen} onClose={()=> dispatch(closeWinDialog())} maxWidth="md" fullWidth>

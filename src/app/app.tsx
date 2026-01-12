@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import BattleshipMultiPlayer from './components/battleship.multiplayer';
+import BattleshipMultiPlayer from './battleshipTwoPlayers/battleship.multiplayer';
 import BattleshipOnePlayer from './battleShip/BattleshipOnePlayer';
 import InputValidate from './inputValidation/input.validate';
 import RenderTextComponent from './textCount/render.text';

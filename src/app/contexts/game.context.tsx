@@ -23,7 +23,8 @@ export const GameProvider = ({ children }) => {
 
   useEffect(() => {
     startGame();
-  }, [rows, mode])
+  }, [rows, mode]);
+
   const startGame = () => {
     console.log('Game mode', mode);
     let newGame;
@@ -88,10 +89,6 @@ export const GameProvider = ({ children }) => {
       dispatch(openWinDialog()); // Open win dialog via Redux
     }
 
-    // Switch player turn in 2P mode
-    if (mode === "2P") {
-      setPlayerTurn(prevTurn => (prevTurn === 0 ? 1 : 0));
-    }
   };
 
   // Handlers for dialogs now dispatch Redux actions
@@ -112,6 +109,7 @@ export const GameProvider = ({ children }) => {
     handleCloseWinDialog,
     handleOpenStatsDialog,
     handleCloseStatsDialog,
+    setPlayerTurn,
   };
 
   return (

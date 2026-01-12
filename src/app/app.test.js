@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './app';
-import BattleshipUI from './components/battleship.multiplayer';
+import BattleshipUI from './battleshipTwoPlayers/battleship.multiplayer';
 // import '@testing-library/jest-dom'; // Ensure this import is present
 
 jest.mock('./components/battleship.ui', () => {

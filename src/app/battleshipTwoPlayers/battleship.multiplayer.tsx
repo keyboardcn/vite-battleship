@@ -32,7 +32,6 @@ export default function BattleshipMultiPlayer() {
   const [colInput, setColInput] = useState("");
 
   const onReset = (rows: number) => {
-    console.log("rows and ships", rows, rows);
     dispatch(setBoardSize({ rows: rows, cols: rows }));
   };
 
@@ -45,7 +44,6 @@ export default function BattleshipMultiPlayer() {
 
   const isGameStarted = boards.length > 0;
   const isSingleBoardLayout = boards.length === 1;
-  console.log("BattleshipUI: isSingleBoardLayout", isSingleBoardLayout);
 
   return (
     <PageComponent>
