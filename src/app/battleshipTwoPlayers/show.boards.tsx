@@ -28,7 +28,7 @@ export function ShowBoards() {
   }
 
   const validateHandleShoot = (r, c) => {
-    if (!canShoot) {
+    if (mode === '2P'  && !canShoot) {
       alert("Switch player please!")
     } else {
       setCanShoot(false);

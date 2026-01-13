@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import {toast} from "react-toastify"
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { OnePlayerGame, TwoPlayerGame } from '../services/games';
 import { 
@@ -11,8 +12,8 @@ import {
 export const GameContext = createContext(null);
 
 export const GameProvider = ({ children }) => {
-  const { rows, cols, mode } = useAppSelector((state) => state.gameConfig);
   const dispatch = useAppDispatch(); // Get dispatch for Redux actions
+  const {rows, cols, mode} = useAppSelector(state => state.gameConfig);
 
   const [gameInstance, setGameInstance] = useState(null);
   const [playerTurn, setPlayerTurn] = useState(0); // 0 for Player1, 1 for Player2
@@ -21,11 +22,7 @@ export const GameProvider = ({ children }) => {
   const [winnerBoards, setWinnerBoards] = useState([]); // Boards to display in win dialog
   const [seenShots, setSeenShots] = useState([]); // To track shots already made in the current game
 
-  useEffect(() => {
-    startGame();
-  }, [rows, mode]);
-
-  const startGame = () => {
+  const startGame = (mode: string, ) => {
     console.log('Game mode', mode);
     let newGame;
     if (mode === "1P") {
@@ -34,8 +31,8 @@ export const GameProvider = ({ children }) => {
       newGame = new TwoPlayerGame("Player1", "Player2", rows, cols);
     }
     setGameInstance(newGame);
-    setSeenShots([]); // Reset seen shots for the new game
-    setPlayerTurn(0); // Reset turn to Player 1
+    setSeenShots([]); 
+    setPlayerTurn(0); 
     setStatusMessage(""); // Clear status message
 
     dispatch(closeWinDialog());
@@ -66,11 +63,10 @@ export const GameProvider = ({ children }) => {
     const marker = `P${playerTurn}.${row}.${col}`;
 
     if (seenShots.includes(marker) || row < 0 || row >= rows || col < 0 || col >= cols) {
-      setStatusMessage("❌Invalid shot or already shot here!");
+      toast("❌Invalid shot or already shot here!");
       return;
     }
 
-    // Perform the shot using the game instance
     const result = gameInstance.alternativeShoot(row, col);
     setSeenShots((prev) => [...prev, marker]); // Add shot to seen list
 
@@ -78,10 +74,9 @@ export const GameProvider = ({ children }) => {
     const newBoards = mode === "1P"
       ? [gameInstance.player.board.board]
       : [gameInstance.player1.board.board, gameInstance.player2.board.board];
-    setBoards([...newBoards]); // Ensure state update triggers re-render
-
+    setBoards([...newBoards]); 
     // Update status message
-    setStatusMessage(result.hit ? `🔥 ${result.shooter} hit!` : `❌ ${result.shooter} missed!`);
+    toast(result.hit ? `🔥 ${result.shooter} hit!` : `❌ ${result.shooter} missed!`);
 
     // Check for winner
     if (result.winner) {

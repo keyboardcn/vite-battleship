@@ -20,6 +20,7 @@ const gameConfigSlice = createSlice({
   initialState, // The initial state defined above
   reducers: {
     setBoardSize: (state, action) => {
+      console.log('setBoardSize', action.payload);
       state.rows = action.payload.rows;
       state.cols = action.payload.cols;
     },
