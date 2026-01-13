@@ -16,10 +16,12 @@ export function LabelInputComponent({
   labelData,
   inputData,
   onChange,
+  className,
 }: {
   labelData: ILabelData;
   inputData: IInputData;
   onChange: (value: any) => void;
+  className?: string;
 }) {
   const handleChange = (val) => {
     if (inputData.type === "number") {
@@ -28,15 +30,17 @@ export function LabelInputComponent({
       onChange(val);
     }
   };
+  const newClsName = "flex w-full flex-col md:flex-row md:md-2 md:items-center gap-10" + className;
   return (
-    <div className="flex items-start w-full max-md:flex-col md:mb-5">
+    <div className={newClsName}>
       <label
         id={labelData.id}
         htmlFor={labelData.htmlFor}
-        className="block text-sm font-medium text-blue-600 w-32 mr-10"
+        className="block text-md font-medium text-blue-600 w-24 p-1 md:shrink-0 md:text-right"
       >
         {labelData.content}
       </label>
+
       <input
         id={inputData.id}
         type={inputData.type}
@@ -44,7 +48,7 @@ export function LabelInputComponent({
         className="h-10 grow bg-blue-300
          text-white p-1 focus:outline-amber-200 scroll-amber-300 hover:bg-green-300 scroll-mb-60 mt-1 block w-full px-3 
          py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500
-          focus:border-blue-500 sm:text-sm"
+          focus:border-blue-500 text-sm md:text-md"
         onChange={(e) => handleChange(e.target.value)}
       />
     </div>
@@ -111,7 +115,7 @@ export function CenterCardComponent({
   return (
     <div
       id={id}
-      className="m-1 flex justify-center items-center gap-1 rounded-xl bg-blue-100 p-6 max-md:flex-col max-md:justify-center"
+      className="m-1 flex justify-center items-center gap-1 rounded-xl bg-blue-100 pl-8 pr-8 pt-6 md:p-6 max-md:flex-col max-md:justify-center"
     >
       {children}
     </div>
@@ -120,7 +124,7 @@ export function CenterCardComponent({
 
 export function SectionComponent({ children }: PropsWithChildren<any>) {
   return (
-    <div className="m-5 rounded-xl bg-blue-100 border border-amber-400">
+    <div className="m-6 p-10 rounded-xl bg-blue-100 border border-amber-400">
       {children}
     </div>
   );

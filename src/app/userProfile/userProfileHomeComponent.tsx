@@ -2,20 +2,35 @@ import React, { useState, useEffect } from "react";
 import { getAllBooks, loginUser, logoutUser } from "../apiServices/authService";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setAccessToken } from "../redux/accessTokenSlice";
-import { ButtonComponent, CenterCardComponent, LabelInputComponent, PageComponent, SectionComponent } from "../commons/common.components";
+import {
+  ButtonComponent,
+  CenterCardComponent,
+  LabelInputComponent,
+  PageComponent,
+  SectionComponent,
+} from "../commons/common.components";
+import {IUser, LoggedUserComponent } from "./components/loggedUser.component";
 
 export default function UserProfileHomeComponent() {
   const [email, setEmail] = useState<string>("jane.smith@example.com");
   const [password, setPassword] = useState<string>("password123");
-  const [mode, setMode] = useState<"signin"|"signup"|"logged">("signin");
+  const [mode, setMode] = useState<"signin" | "signup" | "logged">("logged");
+  const [loggedUser, setLoggedUser] = useState<IUser>({
+    name: "Jan Smith",
+    email: "jane.smith@example.com",
+    author_id: "12344",
+    books: "not known",
+    dateModified: "fjdlajfdj"
+  })
+
   const dispatch = useAppDispatch();
   const accessToken = useAppSelector((state) => state.accessToken.accessToken);
 
   const swithSignInUp = () => {
-    setMode(mode == 'signin'? "signup": "signin");
-  }
+    setMode(mode == "signin" ? "signup" : "signin");
+  };
 
-  useEffect(()=> {
+  useEffect(() => {
     if (mode === "signup") {
       setEmail("");
       setPassword("");
@@ -30,13 +45,13 @@ export default function UserProfileHomeComponent() {
       case "signin":
         handleLogin();
         break;
-      case "signup" :
+      case "signup":
         console.log("Not implemented!");
         break;
       case "logged":
         handleLogout();
       default:
-        console.log("Not Implemented!")
+        console.log("Not Implemented!");
     }
   }
 
@@ -52,7 +67,6 @@ export default function UserProfileHomeComponent() {
       });
   };
   const handleLogout = () => {
-
     logoutUser()
       .then((response) => {
         console.log("Logout successful:", response.data);
@@ -76,8 +90,14 @@ export default function UserProfileHomeComponent() {
 
   return (
     <PageComponent>
-        <h2 className="font-bold text-blue-600 text-5xl max-md:text-2xl items-center">User Profile</h2>
-      <SectionComponent>
+      <h2 className="font-bold text-blue-600 text-5xl max-md:text-2xl items-center">
+        User Profile
+      </h2>
+      {mode == "logged" && 
+        <LoggedUserComponent
+          props={loggedUser}
+        ></LoggedUserComponent>}
+      {mode != "logged" &&(<SectionComponent>
         <CenterCardComponent id="user-profile-label-input">
           <LabelInputComponent
             labelData={{
@@ -88,50 +108,52 @@ export default function UserProfileHomeComponent() {
             inputData={{
               id: "user-profile-input",
               type: "email",
-              value: email
+              value: email,
             }}
             onChange={(e) => setEmail(e.target.value)}
           ></LabelInputComponent>
           <LabelInputComponent
-            labelData = {{
-              id:"user-name-label",
+            labelData={{
+              id: "user-name-label",
               htmlFor: "user-name-input",
-              content: "Password"
+              content: "Password",
             }}
             inputData={{
               id: "user-name-input",
               type: "password",
-              value: password
+              value: password,
             }}
             onChange={(e) => setPassword(e.target.value)}
-            >
-            </LabelInputComponent>
+          ></LabelInputComponent>
         </CenterCardComponent>
         <CenterCardComponent id="btn-input-card">
-        <ButtonComponent
-          id="sign-in-up-btn"
-          content={mode.toLowerCase()}
-          onClick={handleSignInClk}
-        ></ButtonComponent>
-        
+          <ButtonComponent
+            id="sign-in-up-btn"
+            content={mode.toLowerCase()}
+            onClick={handleSignInClk}
+          ></ButtonComponent>
         </CenterCardComponent>
         <CenterCardComponent id="switch-sign-up-in">
-          {mode != "logged" 
-           && (<a className="font-bold text-blue-600 border border-amber-300 rounded-3xl p-2 bg-blue-300"
-            onClick={()=> swithSignInUp()}>
-            {mode == 'signin'? "Create a NEW account": "Existing user SIGNIN"}</a>)}
+            <a
+              className="font-bold text-blue-600 border border-amber-300 rounded-3xl p-2 bg-blue-300"
+              onClick={() => swithSignInUp()}
+            >
+              {mode == "signin"
+                ? "Create a NEW account"
+                : "Existing user SIGNIN"}
+            </a>
         </CenterCardComponent>
-      </SectionComponent>
-      <SectionComponent>
-        <div className="input-wrapper">
-          <button
-            style={{ display: "block", width: "100%" }}
-            onClick={() => handleGetAllBooks()}
-          >
-            Get All Books
-          </button>
-        </div>
-      </SectionComponent>
+        <SectionComponent>
+          <div className="input-wrapper">
+            <button
+              style={{ display: "block", width: "100%" }}
+              onClick={() => handleGetAllBooks()}
+            >
+              Get All Books
+            </button>
+          </div>
+        </SectionComponent>
+      </SectionComponent>)}
     </PageComponent>
   );
 }
