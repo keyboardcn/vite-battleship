@@ -26,7 +26,7 @@ function App() {
   return (
       <Router>
         <div className="text-left">
-          <nav className='w-full mb-5 bg-blue-700 pt-2 pb-2
+          <nav className='fixed w-full mb-5 bg-primary-700 pt-2 pb-2
           flex justify-between md:justify-start'>
             <Link to="/user-profile"
              className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white'
@@ -52,7 +52,7 @@ function App() {
             
             <Link to="/user-profile"
              className='hidden items-center justify-center h-8 w-8 text-xl ml-2 mr-7 bg-white
-             decoration-0 border border-amber-100 rounded-3xl md:flex md:absolute md:right-0'
+             decoration-0 border border-qua-100 rounded-3xl md:flex md:absolute md:right-0'
             ><img src={thImage}
               alt="AVATAR"
             ></img></Link>

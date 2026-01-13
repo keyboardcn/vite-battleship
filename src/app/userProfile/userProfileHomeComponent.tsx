@@ -90,8 +90,8 @@ export default function UserProfileHomeComponent() {
 
   return (
     <PageComponent>
-      <h2 className="font-bold text-blue-600 text-5xl max-md:text-2xl items-center">
-        User Profile
+      <h2 className="m-6 font-bold text-primary-700 text-5xl max-md:text-2xl items-center">
+        USER PROFILE
       </h2>
       {mode == "logged" && 
         <LoggedUserComponent
@@ -135,7 +135,7 @@ export default function UserProfileHomeComponent() {
         </CenterCardComponent>
         <CenterCardComponent id="switch-sign-up-in">
             <a
-              className="font-bold text-blue-600 border border-amber-300 rounded-3xl p-2 bg-blue-300"
+              className="font-bold text-primary-600 border border-qua-300 rounded-3xl p-2 bg-primary-300"
               onClick={() => swithSignInUp()}
             >
               {mode == "signin"

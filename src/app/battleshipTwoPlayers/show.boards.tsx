@@ -47,10 +47,10 @@ export function ShowBoards() {
           ></MatrixOfSquareComponent>
         {boards.length == 2 && (
           <button
-            className="font-bold text-blue-600 text-2xl p-5 justify-center"
+            className="font-bold text-primary-600 text-2xl p-5 justify-center"
             onClick={handleBtnClick}
           >
-            PLAYER:<strong className="text-3xl text-blue-600">{mode === "2P" ? `${playerTurn === 0 ? "1" : "2"}` : ""}</strong>
+            PLAYER:<strong className="text-3xl text-primary-600">{mode === "2P" ? `${playerTurn === 0 ? "1" : "2"}` : ""}</strong>
           </button>
         )}
       </CenterCardComponent>

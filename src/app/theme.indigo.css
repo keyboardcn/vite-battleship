@@ -1,0 +1,51 @@
+@theme {
+    /* indigo  */
+  --color-primary-50: oklch(96.2% 0.018 272.314);
+  --color-primary-100: oklch(93% 0.034 272.788);
+  --color-primary-200: oklch(87% 0.065 274.039);
+  --color-primary-300: oklch(78.5% 0.115 274.713);
+  --color-primary-400: oklch(67.3% 0.182 276.935);
+  --color-primary-500: oklch(58.5% 0.233 277.117);
+  --color-primary-600: oklch(51.1% 0.262 276.966);
+  --color-primary-700: oklch(45.7% 0.24 277.023);
+  --color-primary-800: oklch(39.8% 0.195 277.366);
+  --color-primary-900: oklch(35.9% 0.144 278.697);
+  --color-primary-950: oklch(25.7% 0.09 281.288);
+
+  /* blue */
+  --color-secondary-50: oklch(97% 0.014 254.604);
+  --color-secondary-100: oklch(93.2% 0.032 255.585);
+  --color-secondary-200: oklch(88.2% 0.059 254.128);
+  --color-secondary-300: oklch(80.9% 0.105 251.813);
+  --color-secondary-400: oklch(70.7% 0.165 254.624);
+  --color-secondary-500: oklch(62.3% 0.214 259.815);
+  --color-secondary-600: oklch(54.6% 0.245 262.881);
+  --color-secondary-700: oklch(48.8% 0.243 264.376);
+  --color-secondary-800: oklch(42.4% 0.199 265.638);
+  --color-secondary-900: oklch(37.9% 0.146 265.522);
+  --color-secondary-950: oklch(28.2% 0.091 267.935);
+  /* green */
+  --color-tertiary-50: oklch(98.2% 0.018 155.826);
+  --color-tertiary-100: oklch(96.2% 0.044 156.743);
+  --color-tertiary-200: oklch(92.5% 0.084 155.995);
+  --color-tertiary-300: oklch(87.1% 0.15 154.449);
+  --color-tertiary-400: oklch(79.2% 0.209 151.711);
+  --color-tertiary-500: oklch(72.3% 0.219 149.579);
+  --color-tertiary-600: oklch(62.7% 0.194 149.214);
+  --color-tertiary-700: oklch(52.7% 0.154 150.069);
+  --color-tertiary-800: oklch(44.8% 0.119 151.328);
+  --color-tertiary-900: oklch(39.3% 0.095 152.535);
+  --color-tertiary-950: oklch(26.6% 0.065 152.934); 
+  /* amber */
+  --color-qua-50: oklch(98.7% 0.022 95.277);
+  --color-qua-100: oklch(96.2% 0.059 95.617);
+  --color-qua-200: oklch(92.4% 0.12 95.746);
+  --color-qua-300: oklch(87.9% 0.169 91.605);
+  --color-qua-400: oklch(82.8% 0.189 84.429);
+  --color-qua-500: oklch(76.9% 0.188 70.08);
+  --color-qua-600: oklch(66.6% 0.179 58.318);
+  --color-qua-700: oklch(55.5% 0.163 48.998);
+  --color-qua-800: oklch(47.3% 0.137 46.201);
+  --color-qua-900: oklch(41.4% 0.112 45.904);
+  --color-qua-950: oklch(27.9% 0.077 45.635);  
+}

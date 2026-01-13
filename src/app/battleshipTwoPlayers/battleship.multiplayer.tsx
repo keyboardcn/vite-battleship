@@ -60,7 +60,7 @@ export default function BattleshipMultiPlayer() {
             className="h-14 bg-transparent"
             alt="Battleship Logo"
           />
-          <h2 className="font-bold text-blue-600 text-5xl max-md:text-2xl">Battleship Game</h2>
+          <h2 className="font-bold text-primary-600 text-5xl max-md:text-2xl">Battleship Game</h2>
         </CenterCardComponent>
       </SectionComponent>
 
@@ -68,15 +68,15 @@ export default function BattleshipMultiPlayer() {
         <CenterCardComponent id="player-row">
           <select
             id="player-select"
-            className="w-full h-12 text-blue-600 font-bold hover:bg-green-300 border border-amber-300
+            className="w-full h-12 text-primary-600 font-bold hover:bg-green-300 border border-qua-300
             focus:bg-green-300"
             value={mode}
             onChange={(e) =>{setMode(e.target.value)}}
           >
-            <option value="1P" className="text-blue-600 hover:bg-blue-300">
+            <option value="1P" className="text-primary-600 hover:bg-primary-300">
               One Player
             </option>
-            <option value="2P" className="text-blue-600 hover:bg-blue-300">
+            <option value="2P" className="text-primary-600 hover:bg-primary-300">
               Two Players
             </option>
           </select>

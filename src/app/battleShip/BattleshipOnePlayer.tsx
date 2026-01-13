@@ -80,7 +80,7 @@ export default function BattleshipOnePlayer() {
   return (
     <PageComponent>
       <SectionComponent>
-        <h1 className="text-3xl font-bold mb-4 text-center items-center p-1 text-blue-700">Battleship Game!</h1>
+        <h1 className="text-3xl font-bold mb-4 text-center items-center p-1 text-primary-700">Battleship Game!</h1>
       </SectionComponent>
       <ResizeComponent resize={resetBMatrix} />
 

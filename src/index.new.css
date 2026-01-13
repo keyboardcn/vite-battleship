@@ -8,8 +8,8 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-400: oklch(70.4% 0.191 22.216);
-    --color-blue-400: oklch(70.7% 0.165 254.624);
-    --color-blue-500: oklch(62.3% 0.214 259.815);
+    --color-primary-400: oklch(70.7% 0.165 254.624);
+    --color-primary-500: oklch(62.3% 0.214 259.815);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-700: oklch(37.3% 0.034 259.733);
@@ -280,8 +280,8 @@
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
   }
-  .text-blue-400 {
-    color: var(--color-blue-400);
+  .text-primary-400 {
+    color: var(--color-primary-400);
   }
   .text-gray-700 {
     color: var(--color-gray-700);
@@ -311,14 +311,14 @@
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
-  .focus\:border-blue-500 {
+  .focus\:border-primary-500 {
     &:focus {
-      border-color: var(--color-blue-500);
+      border-color: var(--color-primary-500);
     }
   }
-  .focus\:ring-blue-500 {
+  .focus\:ring-primary-500 {
     &:focus {
-      --tw-ring-color: var(--color-blue-500);
+      --tw-ring-color: var(--color-primary-500);
     }
   }
   .focus\:outline-none {
