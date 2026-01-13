@@ -2,72 +2,64 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import BattleshipMultiPlayer from './battleshipTwoPlayers/battleship.multiplayer';
 import BattleshipOnePlayer from './battleShip/BattleshipOnePlayer';
-import InputValidate from './inputValidation/input.validate';
 import RenderTextComponent from './textCount/render.text';
 import UserProfileHomeComponent from './userProfile/userProfileHomeComponent';
 import BookHomeComponent from './booksList/book.home.component';
+import { DropdownComponent } from './commons/common.dropdown';
 
 import './app.css';
 function App() {
   const [showDD, setShowDD] = useState(false);
   const [showPlaceHolder, setShowPlaceHolder] = useState(false);
+  const btspModes: [string, string][] = [
+    ['/', "ONE Player"],
+    ['/battleship', "MULTI Player"]
+  ]
+  const userBooks: [string, string][] = [
+    ["/show-books", "Show Books"],
+    ["", "Undefined"],
+  ]
+
+  const breathItms: [string, string][] = [...btspModes, userBooks[0]];
   return (
       <Router>
-        <div className="app">
-          <nav>
-            <Link to="/">Home</Link>
-            <div
-                className='dropdown-wrapper extra-div'
-                onClick={() => setShowPlaceHolder(true)}
-                >
-              <a>Users & Books</a>
-              { showPlaceHolder &&
-              (<ul className='dropdown' onMouseEnter={() => setShowPlaceHolder(true)} onMouseLeave={() => setShowPlaceHolder(false)}>
-                <li>
-                  <Link to="/user-profile">User Profile</Link>
-                </li>
-                <li>
-                  <Link to="/show-books">Show Books</Link>
-                </li>
-                <li>
-                  <Link to="/input-validate">Input Validate</Link>
+        <div className="text-left">
+          <nav className='w-full mb-5 bg-blue-700 pt-2 pb-2
+          flex justify-between md:justify-start'>
+            <Link to="/user-profile"
+             className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white'
+            >Home</Link>
 
-                </li>
-              </ul>)}             
-            </div>
+            <DropdownComponent
+             id="user-books"
+             className='hidden md:flex'
+             content="Users&Books"
+             links={userBooks}
+            ></DropdownComponent>
             
-            <Link to="/battleship">Battleship Game</Link>
-            <Link to="/render-text">Render Text</Link>
+            <DropdownComponent
+              id="batteleship-modes"
+              className='hidden md:flex'
+              content="battelship"
+              links={btspModes}
+            ></DropdownComponent>
+
+            <Link to="/render-text"
+            className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white max-md:hidden'
+            >Render Text</Link>
             
-            <div className='dropdown-wrapper'
-               id='breadth'
-               onClick={() => {
-                console.log('setDD', showDD)
-                setShowDD(true)}}
-               onMouseOver={() => setShowDD(true)} 
-               onMouseLeave={() => setShowDD(false)} >
-                <a>&#9781;</a>
-            { showDD &&
-            (<ul className='dropdown' onMouseLeave={() => setShowDD(false)}>
-              <li>
-                <Link to="/user-profile" onClick={() => setShowDD(false)}>User Profile</Link>
-              </li>
-              <li>
-                <Link to="/input-validate" onClick={() => setShowDD(false)}>Input Validate</Link>
-              </li>
-              <li>
-                <Link to="/battleship" onClick={() => setShowDD(false)}>Battleship Game</Link>
-              </li>
-              <li>
-                <Link to="/render-text" onClick={() => setShowDD(false)}>Render Text</Link>
-              </li>
-            </ul>)}
-            </div>
+
+            <DropdownComponent
+             id = "breadth"
+             className="flex md:hidden"
+             content='&#9781;'
+             links={breathItms}
+            ></DropdownComponent>
+
           </nav>
           <Routes>
             <Route path="/" element={<BattleshipOnePlayer />} />
             <Route path="/user-profile" element={<UserProfileHomeComponent />} />
-            <Route path="/input-validate" element={<InputValidate />} />
             <Route path="/battleship" element={<BattleshipMultiPlayer />} />
             <Route path="/render-text" element={<RenderTextComponent />} />
             <Route path="/show-books" element={<BookHomeComponent />} />
