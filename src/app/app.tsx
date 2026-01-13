@@ -6,6 +6,7 @@ import RenderTextComponent from './textCount/render.text';
 import UserProfileHomeComponent from './userProfile/userProfileHomeComponent';
 import BookHomeComponent from './booksList/book.home.component';
 import { DropdownComponent } from './commons/common.dropdown';
+import thImage from "../assets/avatar-icon-png-13.png";
 
 import './app.css';
 function App() {
@@ -20,7 +21,8 @@ function App() {
     ["", "Undefined"],
   ]
 
-  const breathItms: [string, string][] = [...btspModes, userBooks[0]];
+  const breathItms: [string, string][] = [["/user-profile", "User Profiles"], ...btspModes, userBooks[0]];
+
   return (
       <Router>
         <div className="text-left">
@@ -28,7 +30,7 @@ function App() {
           flex justify-between md:justify-start'>
             <Link to="/user-profile"
              className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white'
-            >Home</Link>
+            >HOME</Link>
 
             <DropdownComponent
              id="user-books"
@@ -48,6 +50,12 @@ function App() {
             className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white max-md:hidden'
             >Render Text</Link>
             
+            <Link to="/user-profile"
+             className='hidden items-center justify-center h-8 w-8 text-xl ml-2 mr-7 bg-white
+             decoration-0 border border-amber-100 rounded-3xl md:flex md:absolute md:right-0'
+            ><img src={thImage}
+              alt="AVATAR"
+            ></img></Link>
 
             <DropdownComponent
              id = "breadth"

@@ -2,16 +2,49 @@ import React, { useState, useEffect } from "react";
 import { getAllBooks, loginUser, logoutUser } from "../apiServices/authService";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setAccessToken } from "../redux/accessTokenSlice";
+import { ButtonComponent, CenterCardComponent, LabelInputComponent, PageComponent, SectionComponent } from "../commons/common.components";
+
 export default function UserProfileHomeComponent() {
   const [email, setEmail] = useState<string>("jane.smith@example.com");
   const [password, setPassword] = useState<string>("password123");
+  const [mode, setMode] = useState<"signin"|"signup"|"logged">("signin");
   const dispatch = useAppDispatch();
   const accessToken = useAppSelector((state) => state.accessToken.accessToken);
+
+  const swithSignInUp = () => {
+    setMode(mode == 'signin'? "signup": "signin");
+  }
+
+  useEffect(()=> {
+    if (mode === "signup") {
+      setEmail("");
+      setPassword("");
+    } else {
+      setEmail("jane.smith@example.com");
+      setPassword("password123");
+    }
+  }, [mode]);
+
+  function handleSignInClk() {
+    switch (mode) {
+      case "signin":
+        handleLogin();
+        break;
+      case "signup" :
+        console.log("Not implemented!");
+        break;
+      case "logged":
+        handleLogout();
+      default:
+        console.log("Not Implemented!")
+    }
+  }
+
   const handleLogin = () => {
     console.log(`Logging in with email: ${email} and password: ${password}`);
     loginUser(email, password)
       .then((response) => {
-        console.log("Login successful:", response,response.data);
+        console.log("Login successful:", response, response.data);
         dispatch(setAccessToken({ accessToken: response.data.accessToken }));
       })
       .catch((error) => {
@@ -19,12 +52,11 @@ export default function UserProfileHomeComponent() {
       });
   };
   const handleLogout = () => {
-    console.log("Logging out");
+
     logoutUser()
       .then((response) => {
         console.log("Logout successful:", response.data);
-       dispatch(setAccessToken({ accessToken: null }));
-
+        dispatch(setAccessToken({ accessToken: null }));
       })
       .catch((error) => {
         console.error("Logout failed:", error);
@@ -36,49 +68,70 @@ export default function UserProfileHomeComponent() {
     console.log("Fetched books:", books);
   };
 
-  useEffect(() => {  
+  useEffect(() => {
     if (accessToken) {
-        console.log("Current Access Token:", accessToken);
+      console.log("Current Access Token:", accessToken);
     }
   }, [accessToken]);
 
   return (
-    <div className="container-wrapper">
-      <h2>User Profile Home</h2>
-      <div className="input-wrapper">
-        <div className="input-box">
-          <label htmlFor="email">Email:</label>
-          <input
-            value={email}
+    <PageComponent>
+        <h2 className="font-bold text-blue-600 text-5xl max-md:text-2xl items-center">User Profile</h2>
+      <SectionComponent>
+        <CenterCardComponent id="user-profile-label-input">
+          <LabelInputComponent
+            labelData={{
+              id: "user-profile-label",
+              htmlFor: "user-profile-input",
+              content: "Email",
+            }}
+            inputData={{
+              id: "user-profile-input",
+              type: "email",
+              value: email
+            }}
             onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            id="email"
-            name="email"
-            placeholder="email"
-          />
-        </div>
-        <div className="input-box">
-          <label htmlFor="password">Username:</label>
-          <input
-            value={password}
+          ></LabelInputComponent>
+          <LabelInputComponent
+            labelData = {{
+              id:"user-name-label",
+              htmlFor: "user-name-input",
+              content: "Password"
+            }}
+            inputData={{
+              id: "user-name-input",
+              type: "password",
+              value: password
+            }}
             onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            id="password"
-            name="password"
-            placeholder="password"
-          />
+            >
+            </LabelInputComponent>
+        </CenterCardComponent>
+        <CenterCardComponent id="btn-input-card">
+        <ButtonComponent
+          id="sign-in-up-btn"
+          content={mode.toLowerCase()}
+          onClick={handleSignInClk}
+        ></ButtonComponent>
+        
+        </CenterCardComponent>
+        <CenterCardComponent id="switch-sign-up-in">
+          {mode != "logged" 
+           && (<a className="font-bold text-blue-600 border border-amber-300 rounded-3xl p-2 bg-blue-300"
+            onClick={()=> swithSignInUp()}>
+            {mode == 'signin'? "Create a NEW account": "Existing user SIGNIN"}</a>)}
+        </CenterCardComponent>
+      </SectionComponent>
+      <SectionComponent>
+        <div className="input-wrapper">
+          <button
+            style={{ display: "block", width: "100%" }}
+            onClick={() => handleGetAllBooks()}
+          >
+            Get All Books
+          </button>
         </div>
-        <div className="input-box">
-        <button onClick={() => handleLogin()} style={{ display: 'block', width: '100%' }}>Login</button>
-        <button onClick={() => handleLogout()} style={{ display: 'block', width: '100%' }}>Logout</button>
-        </div>
-      </div>
-
-      <div className="input-wrapper">
-        <button 
-        style={{ display: 'block', width: '100%' }}
-        onClick={() => handleGetAllBooks()}>Get All Books</button>
-      </div>
-    </div>
+      </SectionComponent>
+    </PageComponent>
   );
 }

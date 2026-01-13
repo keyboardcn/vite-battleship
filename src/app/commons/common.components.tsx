@@ -8,7 +8,7 @@ interface ILabelData {
 
 interface IInputData {
   id: string;
-  type: "number" | "text";
+  type: "number" | "text" | "password" | "email";
   value?: string | number;
 }
 
