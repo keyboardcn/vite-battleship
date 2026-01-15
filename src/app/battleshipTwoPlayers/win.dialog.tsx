@@ -13,7 +13,7 @@ import { GameBoard } from "./game.board";
 import { 
     closeWinDialog,
 } from "../redux/gameSlice";
-import { GameContext } from '../contexts/game.context';
+import { GameContext } from './game.context';
 
 export function WinDialog() {
     const dispatch = useAppDispatch();

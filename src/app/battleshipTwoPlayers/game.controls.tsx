@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 import { useDispatch } from 'react-redux'; // Needed for dispatching dialog actions
 import React, { useContext } from 'react'; // Needed for gameInstance
-import { GameContext } from '../contexts/game.context'; // Import GameContext
+import { GameContext } from './game.context'; // Import GameContext
 
 // GameControls component receives props from BattleshipUI to manage its state and actions
 function GameControls({

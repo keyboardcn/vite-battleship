@@ -18,7 +18,7 @@ import {
 import { setBoardSize, setGameMode } from '../redux/gameSlice'
 import ResizeComponent from "../commons/ResizeComponent";
 
-import { GameContext } from "../contexts/game.context";
+import { GameContext } from "./game.context";
 export default function BattleshipMultiPlayer() {
   const dispatch = useAppDispatch();
 

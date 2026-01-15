@@ -5,7 +5,7 @@ import App from './app/app';
 import { Provider } from 'react-redux'; // Import Provider
 import store from './app/redux/store'; // Import the store
 import reportWebVitals from './reportWebVitals';
-import { GameProvider } from './app/contexts/game.context';
+import { GameProvider } from './app/battleshipTwoPlayers/game.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

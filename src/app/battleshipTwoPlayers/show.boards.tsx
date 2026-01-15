@@ -6,7 +6,7 @@ import {
   CenterCardComponent,
   SectionComponent,
 } from "../commons/common.components";
-import { GameContext } from "../contexts/game.context";
+import { GameContext } from "./game.context";
 export function ShowBoards() {
   const { mode } = useAppSelector((state) => state.gameConfig);
   

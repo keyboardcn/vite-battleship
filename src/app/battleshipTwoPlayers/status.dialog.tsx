@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { closeStatsDialog } from '../redux/gameSlice';
-import { GameContext } from '../contexts/game.context';
+import { GameContext } from './game.context';
 
 export function StatusDialog() {
   const dispatch = useAppDispatch();
