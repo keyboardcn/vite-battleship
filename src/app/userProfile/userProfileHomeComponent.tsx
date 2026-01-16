@@ -14,7 +14,7 @@ import {IUser, LoggedUserComponent } from "./components/loggedUser.component";
 export default function UserProfileHomeComponent() {
   const [email, setEmail] = useState<string>("jane.smith@example.com");
   const [password, setPassword] = useState<string>("password123");
-  const [mode, setMode] = useState<"signin" | "signup" | "logged">("logged");
+  const [mode, setMode] = useState<"signin" | "signup" | "logged">("signin");
   const [loggedUser, setLoggedUser] = useState<IUser>({
     name: "Jan Smith",
     email: "jane.smith@example.com",

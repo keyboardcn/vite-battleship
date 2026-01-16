@@ -3,6 +3,9 @@ import { getAllBooks } from "../apiServices/authService";
 import { Book } from "./book.interface";
 import BookListComponent from "./components/book.lists.component";
 import BookItemComponent from "./components/book.item.component";
+import { ErrorHandler} from "../Exceptions/exception.services";
+import { ToastContainer } from "react-toastify";
+
 export default function BookHomeComponent() {
   const [books, setBooks] = useState<Array<Book>>([]);
   const [bookId, setBookId] = useState<number | null>(null);
@@ -13,10 +16,10 @@ export default function BookHomeComponent() {
         try {
             const books = await getAllBooks();
             setBooks(books);
-        } catch (error) {
-            console.error("Error fetching books:", error);
-        } finally {
-        }
+        } catch (e) {
+            console.error("Error fetching books", e);
+            new ErrorHandler(e);
+        } 
     };
     fetchAllBooks();
   }, []);
@@ -48,6 +51,8 @@ export default function BookHomeComponent() {
           <BookItemComponent book={books.find(book => book.id === bookId)!} onEditBook={onEditBook} />
         </div>
       )}
+      <ToastContainer></ToastContainer>
+
     </div>
   );
 }

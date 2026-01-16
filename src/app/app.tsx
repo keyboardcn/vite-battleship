@@ -9,6 +9,7 @@ import { DropdownComponent } from './commons/common.dropdown';
 import thImage from "../assets/avatar-icon-png-13.png";
 
 import './app.css';
+import { ToastContainer } from 'react-toastify';
 function App() {
   const [showDD, setShowDD] = useState(false);
   const [showPlaceHolder, setShowPlaceHolder] = useState(false);
@@ -74,6 +75,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+      
   )
 }
 export default App;

@@ -10,8 +10,8 @@ import { GameProvider } from './app/battleshipTwoPlayers/game.context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}> {/* Wrap your App with Provider */}
-      <GameProvider> {/* Wrap your App with GameProvider for context */}
+    <Provider store={store}>
+      <GameProvider>
         <App />
       </GameProvider>
     </Provider>
