@@ -5,7 +5,7 @@ import accessTokenReducer from './accessTokenSlice';
 const store = configureStore({
   reducer: {
     gameConfig: gameConfigReducer, // Assign the gameReducer to the 'game' slice of your state
-    accessToken: accessTokenReducer,
+    loggedUser: accessTokenReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -115,7 +115,8 @@ export function CenterCardComponent({
   return (
     <div
       id={id}
-      className="m-1 flex justify-center items-center gap-1 rounded-xl bg-primary-100 pl-8 pr-8 pt-6 md:p-6 max-md:flex-col max-md:justify-center"
+      className="m-1 flex justify-center items-center gap-1
+      rounded-xl bg-primary-100 pl-8 pr-8 pt-6 md:p-6 max-md:flex-col max-md:justify-center"
     >
       {children}
     </div>

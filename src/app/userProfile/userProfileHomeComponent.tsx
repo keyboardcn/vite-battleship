@@ -24,7 +24,7 @@ export default function UserProfileHomeComponent() {
   })
 
   const dispatch = useAppDispatch();
-  const accessToken = useAppSelector((state) => state.accessToken.accessToken);
+  const accessToken = useAppSelector((state) => state.loggedUser.accessToken);
 
   const swithSignInUp = () => {
     setMode(mode == "signin" ? "signup" : "signin");
