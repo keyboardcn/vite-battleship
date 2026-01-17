@@ -2,7 +2,7 @@
 // two inputs: number for size row * column, ships < size
 // button start/reset
 // import "./ResizeComponent.css";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { PropsWithChildren, useCallback, useEffect, useState } from "react";
 import {
   LabelInputComponent,
   ButtonComponent,
@@ -12,7 +12,8 @@ import {
 
 type StatusType = "Start" | "Reset";
 
-const ResizeComponent = ({ resize }) => {
+const ResizeComponent = ({ resize, children }:
+  { resize: (a, b) => void, children: PropsWithChildren<any> }) => {
   const [size, setSize] = useState<number>(5);
   const [ships, setShips] = useState<number>(5);
   const [status, setStatus] = useState<StatusType>("Start");
@@ -24,6 +25,7 @@ const ResizeComponent = ({ resize }) => {
 
   return (
     <SectionComponent>
+      {children}
       <CenterCardComponent id="resize_setting_1">
         <LabelInputComponent
           labelData={{

@@ -17,7 +17,7 @@ import {
 import { setBoardSize, setGameMode } from '../redux/gameSlice'
 import ResizeComponent from "../commons/ResizeComponent";
 
-import { useGameContext, GameProvider } from "./game.context";
+import { useGameContext } from "./game.context";
 export default function BattleshipMultiPlayer() {
   const dispatch = useAppDispatch();
 
@@ -61,7 +61,7 @@ export default function BattleshipMultiPlayer() {
         </CenterCardComponent>
       </SectionComponent>
 
-      <SectionComponent>
+      <ResizeComponent resize={resize}>
         <CenterCardComponent id="player-row">
           <select
             id="player-select"
@@ -78,8 +78,8 @@ export default function BattleshipMultiPlayer() {
             </option>
           </select>
         </CenterCardComponent>
-        <ResizeComponent resize={resize}></ResizeComponent>
-      </SectionComponent>
+
+      </ResizeComponent>
 
       <ShowBoards />
 

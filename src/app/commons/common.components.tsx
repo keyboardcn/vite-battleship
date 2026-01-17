@@ -106,7 +106,7 @@ export function MatrixOfSquareComponent({
 }
 
 interface ICardProps {
-  id: string;
+  id?: string;
 }
 export function CenterCardComponent({
   id,

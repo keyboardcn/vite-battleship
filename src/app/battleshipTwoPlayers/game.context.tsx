@@ -2,17 +2,11 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from "react-toastify"
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { OnePlayerGame, TwoPlayerGame } from '../services/games';
-import {
-  openWinDialog,
-  closeWinDialog,
-  openStatsDialog,
-  closeStatsDialog
-} from '../redux/gameSlice';
+
 
 const GameContext = createContext(null);
 
 export const GameProvider = ({ children }) => {
-  const dispatch = useAppDispatch(); // Get dispatch for Redux actions
   const { rows, cols, mode } = useAppSelector(state => state.gameConfig);
 
   const [gameInstance, setGameInstance] = useState(null);
@@ -35,8 +29,6 @@ export const GameProvider = ({ children }) => {
     setPlayerTurn(0);
     setStatusMessage(""); // Clear status message
 
-    dispatch(closeWinDialog());
-    dispatch(closeStatsDialog());
     setWinnerBoards([]); // Clear winner boards
 
     // Set initial boards based on the new game instance
@@ -47,7 +39,6 @@ export const GameProvider = ({ children }) => {
     console.log("Game started (Context):", newGame);
   };
 
-  // Function to handle a shot attempt
   const handleShoot = (rowInput, colInput) => {
     if (rowInput === "" || colInput === "") {
       setStatusMessage("Please enter both row and column!");
@@ -78,18 +69,11 @@ export const GameProvider = ({ children }) => {
     // Update status message
     toast(result.hit ? `🔥 ${result.shooter} hit!` : `❌ ${result.shooter} missed!`);
 
-    // Check for winner
     if (result.winner) {
       setWinnerBoards([...newBoards]); // Capture final board state
-      dispatch(openWinDialog()); // Open win dialog via Redux
     }
 
   };
-
-  // Handlers for dialogs now dispatch Redux actions
-  const handleCloseWinDialog = () => dispatch(closeWinDialog());
-  const handleOpenStatsDialog = () => dispatch(openStatsDialog());
-  const handleCloseStatsDialog = () => dispatch(closeStatsDialog());
 
 
   // Value provided by the context
@@ -101,9 +85,6 @@ export const GameProvider = ({ children }) => {
     winnerBoards,
     startGame,
     handleShoot,
-    handleCloseWinDialog,
-    handleOpenStatsDialog,
-    handleCloseStatsDialog,
     setPlayerTurn,
   };
 

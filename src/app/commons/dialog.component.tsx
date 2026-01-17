@@ -4,7 +4,7 @@ import { PropsWithChildren, useState } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ButtonComponent } from './common.components'
 export default function DialogComponent({ children }: { children: PropsWithChildren<any> }) {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   return (
     <div>

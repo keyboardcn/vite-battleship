@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './BattleshipOnePlayer.css';
 import ResizeComponent from "../commons/ResizeComponent";
 import {
   CenterCardComponent,
@@ -82,7 +81,7 @@ export default function BattleshipOnePlayer() {
       <SectionComponent>
         <h1 className="text-3xl font-bold mb-4 text-center items-center p-1 text-primary-700">Battleship Game!</h1>
       </SectionComponent>
-      <ResizeComponent resize={resetBMatrix} />
+      <ResizeComponent resize={resetBMatrix}><div></div></ResizeComponent>
 
       <SectionComponent>
         <CenterCardComponent id="matrix_of_square_1">
@@ -102,7 +101,7 @@ export default function BattleshipOnePlayer() {
               content: "input_1",
             }}
             inputData={{ id: "input_1", type: "text", value: "" }}
-            onChange={(val) => {console.log(val)}}
+            onChange={(val) => { console.log(val) }}
           ></LabelInputComponent>
         </CenterCardComponent>
       </SectionComponent>

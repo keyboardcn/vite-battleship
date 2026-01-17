@@ -29,31 +29,12 @@ const gameConfigSlice = createSlice({
       console.log("Game Mode Change:", action)
       state.mode = action.payload;
     },
-    openWinDialog: (state) => {
-      state.winDialogOpen = true;
-    },
-    // Reducer to close the win dialog
-    closeWinDialog: (state) => {
-      state.winDialogOpen = false;
-    },
-    // Reducer to open the stats dialog
-    openStatsDialog: (state) => {
-      state.statsDialogOpen = true;
-    },
-    // Reducer to close the stats dialog
-    closeStatsDialog: (state) => {
-      state.statsDialogOpen = false;
-    },
   },
 });
 
 export const {
   setBoardSize,
   setGameMode,
-  openWinDialog,
-  closeWinDialog,
-  openStatsDialog,
-  closeStatsDialog,
 } = gameConfigSlice.actions;
 
 export default gameConfigSlice.reducer;
