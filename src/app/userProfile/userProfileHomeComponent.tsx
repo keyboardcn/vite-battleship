@@ -10,6 +10,8 @@ import {
   SectionComponent,
 } from "../commons/common.components";
 import {IUser, LoggedUserComponent } from "./components/loggedUser.component";
+import { ErrorHandler } from "../Exceptions/exception.services";
+import { ToastContainer } from "react-toastify";
 
 export default function UserProfileHomeComponent() {
   const [email, setEmail] = useState<string>("jane.smith@example.com");
@@ -64,6 +66,7 @@ export default function UserProfileHomeComponent() {
       })
       .catch((error) => {
         console.error("Login failed:", error);
+        new ErrorHandler(error);
       });
   };
   const handleLogout = () => {
@@ -154,6 +157,7 @@ export default function UserProfileHomeComponent() {
           </div>
         </SectionComponent>
       </SectionComponent>)}
+      <ToastContainer></ToastContainer>
     </PageComponent>
   );
 }

@@ -23,10 +23,10 @@ export function DropdownComponent(
     >
       <a className="items-center font-bold text-xl mr-7 decoration-0 text-white">{props.content.toUpperCase()}</a>
       {showDD && (
-        <ul className="absolute top-6 right-2 flex-col bg-primary-700 border border-qua-200 p-1 z-50 rounded-md" 
-            onMouseLeave={() => setShowDD(false)}>
+        <ul className="absolute top-6 right-2 flex-col bg-primary-700 border border-qua-200 p-1 z-50 rounded-md"
+          onMouseLeave={() => setShowDD(false)}>
           {props.links.map((value) => (
-            <li className="flex items-start text-white p-2 hover: bg-primary-700 hover:text-qua-600 min-w-32">
+            <li key={`${value[0]}-${value[1]}`} className="flex items-start text-white p-2 hover: bg-primary-700 hover:text-qua-600 min-w-32">
               <Link to={value[0]} onClick={() => setShowDD(false)}>
                 {value[1]}
               </Link>

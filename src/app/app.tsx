@@ -11,6 +11,7 @@ import PrivateRoute from './guards/private.route';
 
 import './app.css';
 import BlankHome from './commons/blank.home';
+import { GameProvider } from './battleshipTwoPlayers/game.context';
 function App() {
 
   const btspModes: [string, string][] = [
@@ -25,22 +26,23 @@ function App() {
   const breathItms: [string, string][] = [["/user-profile", "User Profiles"], ...btspModes, userBooks[0]];
 
   return (
+    <GameProvider>
       <Router>
         <div className="text-left">
           <nav className='fixed w-full mb-5 bg-primary-700 pt-2 pb-2
           flex justify-between md:justify-start'>
             <Link to="/"
-             className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white'
+              className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white'
             >HOME</Link>
 
 
             <DropdownComponent
-             id="user-books"
-             className='hidden md:flex'
-             content="Users&Books"
-             links={userBooks}
+              id="user-books"
+              className='hidden md:flex'
+              content="Users&Books"
+              links={userBooks}
             ></DropdownComponent>
-            
+
             <DropdownComponent
               id="batteleship-modes"
               className='hidden md:flex'
@@ -49,21 +51,21 @@ function App() {
             ></DropdownComponent>
 
             <Link to="/render-text"
-            className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white max-md:hidden'
+              className='items-center font-bold text-xl ml-2 mr-7 decoration-0 text-white max-md:hidden'
             >Render Text</Link>
-            
+
             <Link to="/user-profile"
-             className='hidden items-center justify-center h-8 w-8 text-xl ml-2 mr-7 bg-white
+              className='hidden items-center justify-center h-8 w-8 text-xl ml-2 mr-7 bg-white
              decoration-0 border border-qua-100 rounded-3xl md:flex md:absolute md:right-0'
             ><img src={thImage}
               alt="AVATAR"
             ></img></Link>
 
             <DropdownComponent
-             id = "breadth"
-             className="flex md:hidden"
-             content='&#9781;'
-             links={breathItms}
+              id="breadth"
+              className="flex md:hidden"
+              content='&#9781;'
+              links={breathItms}
             ></DropdownComponent>
 
           </nav>
@@ -81,7 +83,7 @@ function App() {
           </Routes>
         </div>
       </Router>
-      
+    </GameProvider>
   )
 }
 export default App;

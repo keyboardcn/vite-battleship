@@ -1,19 +1,19 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import {toast} from "react-toastify"
+import { toast } from "react-toastify"
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { OnePlayerGame, TwoPlayerGame } from '../services/games';
-import { 
-    openWinDialog, 
-    closeWinDialog, 
-    openStatsDialog, 
-    closeStatsDialog 
+import {
+  openWinDialog,
+  closeWinDialog,
+  openStatsDialog,
+  closeStatsDialog
 } from '../redux/gameSlice';
 
-export const GameContext = createContext(null);
+const GameContext = createContext(null);
 
 export const GameProvider = ({ children }) => {
   const dispatch = useAppDispatch(); // Get dispatch for Redux actions
-  const {rows, cols, mode} = useAppSelector(state => state.gameConfig);
+  const { rows, cols, mode } = useAppSelector(state => state.gameConfig);
 
   const [gameInstance, setGameInstance] = useState(null);
   const [playerTurn, setPlayerTurn] = useState(0); // 0 for Player1, 1 for Player2
@@ -22,7 +22,7 @@ export const GameProvider = ({ children }) => {
   const [winnerBoards, setWinnerBoards] = useState([]); // Boards to display in win dialog
   const [seenShots, setSeenShots] = useState([]); // To track shots already made in the current game
 
-  const startGame = (mode: string, ) => {
+  const startGame = (mode: string,) => {
     console.log('Game mode', mode);
     let newGame;
     if (mode === "1P") {
@@ -31,8 +31,8 @@ export const GameProvider = ({ children }) => {
       newGame = new TwoPlayerGame("Player1", "Player2", rows, cols);
     }
     setGameInstance(newGame);
-    setSeenShots([]); 
-    setPlayerTurn(0); 
+    setSeenShots([]);
+    setPlayerTurn(0);
     setStatusMessage(""); // Clear status message
 
     dispatch(closeWinDialog());
@@ -74,7 +74,7 @@ export const GameProvider = ({ children }) => {
     const newBoards = mode === "1P"
       ? [gameInstance.player.board.board]
       : [gameInstance.player1.board.board, gameInstance.player2.board.board];
-    setBoards([...newBoards]); 
+    setBoards([...newBoards]);
     // Update status message
     toast(result.hit ? `🔥 ${result.shooter} hit!` : `❌ ${result.shooter} missed!`);
 
@@ -113,3 +113,11 @@ export const GameProvider = ({ children }) => {
     </GameContext.Provider>
   );
 };
+
+export const useGameContext = () => {
+  if (!GameContext) {
+    console.log("Null game context!");
+    return;
+  }
+  return useContext(GameContext);
+}

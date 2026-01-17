@@ -6,14 +6,13 @@ import {
   CenterCardComponent,
   SectionComponent,
 } from "../commons/common.components";
-import { GameContext } from "./game.context";
+import { useGameContext } from "./game.context";
 export function ShowBoards() {
   const { mode } = useAppSelector((state) => state.gameConfig);
-  
+
   const { playerTurn, setPlayerTurn, boards, handleShoot } =
-  useContext(GameContext);
-  
-  const [btnClkCount, setBtnClkCount] = useState<boolean>(false);
+    useGameContext();
+
   const [canSwitchPlayer, setCanSwitchPlayer] = useState<boolean>(false);
   const [canShoot, setCanShoot] = useState<boolean>(true);
 
@@ -28,7 +27,7 @@ export function ShowBoards() {
   }
 
   const validateHandleShoot = (r, c) => {
-    if (mode === '2P'  && !canShoot) {
+    if (mode === '2P' && !canShoot) {
       alert("Switch player please!")
     } else {
       setCanShoot(false);
@@ -41,10 +40,10 @@ export function ShowBoards() {
     <SectionComponent>
       <CenterCardComponent id="board-card-1">
 
-        <MatrixOfSquareComponent 
+        <MatrixOfSquareComponent
           matrix={boards.length > 1 ? boards[1 - playerTurn] : boards[0]}
           handleMatrixCellHit={validateHandleShoot}
-          ></MatrixOfSquareComponent>
+        ></MatrixOfSquareComponent>
         {boards.length == 2 && (
           <button
             className="font-bold text-primary-600 text-2xl p-5 justify-center"
