@@ -1,13 +1,16 @@
 import { api, publicApi } from './axiosSetting';
 import { tokenStore } from './tokenStore';
+import useInfo from './users.table.json';
+
 type LoginResponseTpye = {
   accessToken: string;
   refreshToken: string;
+  user: {};
 }
-export async function loginUser(email: string, password: string): Promise<{data: LoginResponseTpye}> {
+export async function loginUser(email: string, password: string): Promise<{ data: LoginResponseTpye }> {
   const { data } = await publicApi.post('/auth/login', { email, password });
   tokenStore.set(data.accessToken);
-  return {data: data};
+  return { data: data };
 }
 
 
@@ -18,6 +21,6 @@ export async function logoutUser() {
 }
 
 export async function getAllBooks() {
-  const { data } = await api.get('/books');
-  return data;
+  // const { data } = await api.get('/books');
+  return useInfo;
 }

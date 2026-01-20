@@ -4,11 +4,12 @@
 // import "./ResizeComponent.css";
 import React, { PropsWithChildren, useCallback, useEffect, useState } from "react";
 import {
-  LabelInputComponent,
   ButtonComponent,
   CenterCardComponent,
   SectionComponent,
 } from "./common.components";
+
+import { LabelInputComponent } from "./LabelInput.component";
 
 type StatusType = "Start" | "Reset";
 

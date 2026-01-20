@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "first_name": "Marcus",
+    "last_name": "Bennett",
+    "email": "m.bennett88@example.com",
+    "password": "hashed_password_78291",
+    "address": "123 Maple Street, Springfield, IL 62704",
+    "notes": "Premium subscriber; prefers email notifications over SMS.",
+    "date_created": "2024-11-12T10:30:00Z",
+    "date_modified": "2025-01-05T14:22:10Z"
+  },
+  {
+    "id": 2,
+    "first_name": "Elena",
+    "last_name": "Rodriguez",
+    "email": "elena.rod@webmail.org",
+    "password": "hashed_password_33412",
+    "address": "742 Evergreen Terrace, Portland, OR 97201",
+    "notes": "Beta tester for the mobile app interface.",
+    "date_created": "2025-01-15T08:15:45Z",
+    "date_modified": "2025-01-15T08:15:45Z"
+  },
+  {
+    "id": 3,
+    "first_name": "Jordan",
+    "last_name": "Smith",
+    "email": "jsmith_dev@cloudnet.io",
+    "password": "hashed_password_90012",
+    "address": "456 Oak Lane, Austin, TX 78701",
+    "notes": "Account flagged for manual review regarding API usage.",
+    "date_created": "2023-05-20T16:40:00Z",
+    "date_modified": "2025-01-18T09:12:33Z"
+  },
+  {
+    "id": 4,
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "jane.smith@example.com",
+    "password": "password123",
+    "address": "890 Pine Road, Seattle, WA 98101",
+    "notes": "New user registration via web portal.",
+    "date_created": "2026-01-19T15:00:00Z",
+    "date_modified": "2026-01-19T15:00:00Z"
+  }
+]

@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const NODE_ENV = import.meta.env.VITE_NODE_ENV;
 const initialState: {
   user: Record<string, any> | null,
   authanticated: boolean,
   accessToken: string | null,
 } = {
   user: null,
-  authanticated: false,
+  authanticated: NODE_ENV === "development" ? true : NODE_ENV === "test" ? true : false,
   accessToken: null,
 };
 
-// Create a Redux slice for the game
 const accessTokenSlice = createSlice({
   name: 'loggedUser',
   initialState,

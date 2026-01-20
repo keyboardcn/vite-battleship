@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import ResizeComponent from "../commons/ResizeComponent";
 import {
   CenterCardComponent,
-  LabelInputComponent,
   MatrixOfSquareComponent,
   SectionComponent,
   PageComponent,
 } from "../commons/common.components";
+import { LabelInputComponent } from '../commons/LabelInput.component';
 export default function BattleshipOnePlayer() {
   const [action, setAction] = useState("Start");
   const [size, setSize] = useState(5);

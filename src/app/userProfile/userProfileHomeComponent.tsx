@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { getAllBooks, loginUser, logoutUser } from "../apiServices/authService";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { setAccessToken } from "../redux/accessTokenSlice";
+import { setAccessToken, setUser } from "../redux/accessTokenSlice";
 import {
   ButtonComponent,
   CenterCardComponent,
-  LabelInputComponent,
   PageComponent,
   SectionComponent,
 } from "../commons/common.components";
-import {IUser, LoggedUserComponent } from "./components/loggedUser.component";
+import { LabelInputComponent, } from "../commons/LabelInput.component";
+import { IUser, LoggedUserComponent } from "./components/loggedUser.component";
 import { ErrorHandler } from "../Exceptions/exception.services";
 import { ToastContainer } from "react-toastify";
 
@@ -17,6 +17,8 @@ export default function UserProfileHomeComponent() {
   const [email, setEmail] = useState<string>("jane.smith@example.com");
   const [password, setPassword] = useState<string>("password123");
   const [mode, setMode] = useState<"signin" | "signup" | "logged">("signin");
+
+
   const [loggedUser, setLoggedUser] = useState<IUser>({
     name: "Jan Smith",
     email: "jane.smith@example.com",
@@ -27,10 +29,15 @@ export default function UserProfileHomeComponent() {
 
   const dispatch = useAppDispatch();
   const accessToken = useAppSelector((state) => state.loggedUser.accessToken);
+  const authenticated = useAppSelector(state => state.loggedUser.authanticated);
 
   const swithSignInUp = () => {
     setMode(mode == "signin" ? "signup" : "signin");
   };
+
+  useEffect(() => {
+    if (authenticated) { setMode("logged") };
+  }, [authenticated]);
 
   useEffect(() => {
     if (mode === "signup") {
@@ -63,6 +70,7 @@ export default function UserProfileHomeComponent() {
       .then((response) => {
         console.log("Login successful:", response, response.data);
         dispatch(setAccessToken({ accessToken: response.data.accessToken }));
+        dispatch(setUser({ user: response.data.user }));
       })
       .catch((error) => {
         console.error("Login failed:", error);
@@ -96,11 +104,11 @@ export default function UserProfileHomeComponent() {
       <h2 className="m-6 font-bold text-primary-700 text-5xl max-md:text-2xl items-center">
         USER PROFILE
       </h2>
-      {mode == "logged" && 
+      {mode == "logged" &&
         <LoggedUserComponent
           props={loggedUser}
         ></LoggedUserComponent>}
-      {mode != "logged" &&(<SectionComponent>
+      {mode != "logged" && (<SectionComponent>
         <CenterCardComponent id="user-profile-label-input">
           <LabelInputComponent
             labelData={{
@@ -137,14 +145,14 @@ export default function UserProfileHomeComponent() {
           ></ButtonComponent>
         </CenterCardComponent>
         <CenterCardComponent id="switch-sign-up-in">
-            <a
-              className="font-bold text-primary-600 border border-qua-300 rounded-3xl p-2 bg-primary-300"
-              onClick={() => swithSignInUp()}
-            >
-              {mode == "signin"
-                ? "Create a NEW account"
-                : "Existing user SIGNIN"}
-            </a>
+          <a
+            className="font-bold text-primary-600 border border-qua-300 rounded-3xl p-2 bg-primary-300"
+            onClick={() => swithSignInUp()}
+          >
+            {mode == "signin"
+              ? "Create a NEW account"
+              : "Existing user SIGNIN"}
+          </a>
         </CenterCardComponent>
         <SectionComponent>
           <div className="input-wrapper">
